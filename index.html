@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forex Options Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a2e0e6f9b1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="header">
+        <h1><i class="fas fa-chart-line"></i> Forex Options AI Dashboard</h1>
+        <p>Track key metrics and get real-time AI-driven trade strategies</p>
+    </header>
+
+    <main class="main-content">
+        <section class="metrics-cards">
+            <div class="card" id="eurusd">
+                <h3>EUR/USD</h3>
+                <p>Rate: 1.0843</p>
+                <p>Change: <span class="up">+0.12%</span></p>
+            </div>
+            <div class="card" id="usdjpy">
+                <h3>USD/JPY</h3>
+                <p>Rate: 142.89</p>
+                <p>Change: <span class="down">-0.21%</span></p>
+            </div>
+            <div class="card" id="gbpusd">
+                <h3>GBP/USD</h3>
+                <p>Rate: 1.2711</p>
+                <p>Change: <span class="up">+0.18%</span></p>
+            </div>
+        </section>
+
+        <section class="table-section">
+            <h2>Macro Events & Metrics</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pair</th>
+                        <th>Volatility</th>
+                        <th>Interest Rate Diff</th>
+                        <th>Upcoming Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>EUR/USD</td>
+                        <td>6.2%</td>
+                        <td>-0.75%</td>
+                        <td>ECB Rate Decision</td>
+                    </tr>
+                    <tr>
+                        <td>USD/JPY</td>
+                        <td>7.8%</td>
+                        <td>+2.1%</td>
+                        <td>BoJ Press Conference</td>
+                    </tr>
+                    <tr>
+                        <td>GBP/USD</td>
+                        <td>5.9%</td>
+                        <td>-0.25%</td>
+                        <td>UK Inflation Data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="ai-assistant">
+            <h2><i class="fas fa-brain"></i> AI Strategy Assistant</h2>
+            <div id="ai-output">
+                <p>Generating optimal trade strategy...</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 ForexAI | Powered by Open Market Data</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
