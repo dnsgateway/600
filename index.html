@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forex Options AI Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a2e0e6f9b1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="header">
+        <h1><i class="fas fa-chart-line"></i> Forex Options AI Dashboard</h1>
+        <p>Analyze. Predict. Execute.</p>
+    </header>
+
+    <nav class="navbar">
+        <button class="nav-button active">Dashboard</button>
+        <button class="nav-button">Calendar</button>
+        <button class="nav-button">AI Strategies</button>
+        <button class="nav-button">News Feed</button>
+    </nav>
+
+    <main class="dashboard">
+        <section class="metrics">
+            <h2><i class="fas fa-coins"></i> Market Metrics</h2>
+            <div class="cards" id="market-metrics"></div>
+        </section>
+
+        <section class="calendar-ai">
+            <div class="calendar">
+                <h2><i class="far fa-calendar-alt"></i> Trading Calendar</h2>
+                <div id="event-calendar"></div>
+            </div>
+            <div class="ai-strategy">
+                <h2><i class="fas fa-robot"></i> AI Strategy Insight</h2>
+                <div id="ai-insight"></div>
+            </div>
+        </section>
+
+        <section class="news-feed">
+            <h2><i class="fas fa-newspaper"></i> Real-Time Market News</h2>
+            <div id="news"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 ForexAI. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
