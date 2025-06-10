@@ -100,18 +100,9 @@
     </div>
   </section>
 
-  <script src="script.js"></script>
-</body>
-</html>
-"""
+  <script src="script.js">
 
-css_content = """
-
-
-.hidden { display: none !important; }
-"""
-
-js_content = """
+    js_content = """
 const hamburger = document.getElementById('hamburger');
 const sidebar = document.getElementById('sidebar');
 const overlay = document.getElementById('overlay');
@@ -137,3 +128,7 @@ document.getElementById('toggleMacro').addEventListener('change', function () {
 document.getElementById('toggleAI').addEventListener('change', function () {
   document.querySelector('.ai-strategy')?.classList.toggle('hidden', !this.checked);
 })
+
+  </script>
+</body>
+</html>
