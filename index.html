@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Forex Options AI Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="dashboard-header">
+    <h1>Forex Options AI Dashboard</h1>
+    <p>Tracking metrics & AI-driven strategies…</p>
+  </header>
+
+  <main class="dashboard-main">
+    <section class="fx-rates">
+      <div class="card up">
+        <h3>EUR/USD</h3>
+        <p class="rate">1.0843</p>
+        <p class="change up">+0.12%</p>
+      </div>
+      <div class="card down">
+        <h3>USD/JPY</h3>
+        <p class="rate">142.89</p>
+        <p class="change down">-0.21%</p>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <div class="macro-events card">
+        <h3>Macro Events & Metrics</h3>
+        <table>
+          <thead>
+            <tr><th>Pair</th><th>Volatility</th><th>Interest Rate Diff</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>EUR/USD</td><td><div class="bar" style="width:62%"></div>6.2%</td><td>-0.75%</td></tr>
+            <tr><td>USD/JPY</td><td><div class="bar" style="width:78%"></div>7.8%</td><td>+2.1%</td></tr>
+            <tr><td>GBP/USD</td><td><div class="bar" style="width:59%"></div>5.9%</td><td>-0.25%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="news-feed card">
+        <h3>News Feed</h3>
+        <ul>
+          <li>Economic growth increased in euro area</li>
+          <li>Bank of Japan announced rate decision</li>
+          <li>Inflation expectations tick higher</li>
+        </ul>
+      </div>
+
+      <div class="calendar card">
+        <h3>Economic Calendar</h3>
+        <p>Apr 19 – ECB Rate Decision</p>
+      </div>
+
+      <div class="strategy card">
+        <h3>AI Strategy Assistant</h3>
+        <div class="tabs">
+          <button class="active">Week</button>
+          <button>Day</button>
+          <button>Hour</button>
+        </div>
+        <p class="recommendation"><span class="buy">Buy EUR/USD</span></p>
+        <canvas id="strategyChart" width="300" height="100"></canvas>
+      </div>
+
+      <div class="sentiment card">
+        <h3>Sentiment</h3>
+        <div class="gauge">
+          <div class="needle"></div>
+          <p class="score">60</p>
+          <p>Neutral</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
