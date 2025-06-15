@@ -87,7 +87,50 @@
     <h2>Customizable Interface</h2>
     <p>Toggle features such as live rates, macro trends, and AI modules directly from your dashboard menu.</p>
   </section>
+<script>
+/* ───── helper functions (keep if you already have them) ───── */
+function setCookie(name,val,days){
+  const d = new Date(); d.setTime(d.getTime()+days*864e5);
+  document.cookie = `${name}=${val}; path=/; SameSite=Lax; expires=${d.toUTCString()}`;
+}
+function getCookie(name){
+  return document.cookie.split('; ').find(c=>c.startsWith(name+'='))?.split('=')[1];
+}
+function eraseCookie(name){ document.cookie = `${name}=; Max-Age=-1; path=/;`; }
 
+/* ───── 1. When user clicks “Donate” ───── */
+const donateForm = document.querySelector('#donateForm');
+const ORIGINAL_TITLE = document.title;
+
+donateForm?.addEventListener('submit', () => {
+  // 1️⃣  flag that a donation is in progress
+  setCookie('donationPending','1',1);
+
+  // 2️⃣  warn the user not to close the tab
+  document.title = 'Please do not close this window';
+});
+
+/* ───── 2. If PayPal redirects back successfully ───── */
+window.addEventListener('DOMContentLoaded', () => {
+  const ok = new URLSearchParams(location.search).get('donation') === 'success';
+  if (ok && getCookie('donationPending') === '1') {
+    eraseCookie('donationPending');
+    setCookie('donationDone','1',7);
+
+    // Restore the title & show the inline thank-you banner
+    document.title = ORIGINAL_TITLE;
+    document.querySelector('#donationThanks')?.classList.add('show');
+  }
+});
+
+/* ───── 3. If user closes / reloads before completing PayPal ───── */
+window.addEventListener('beforeunload', () => {
+  // If they abandon while the donation is still “pending”, reset it
+  if (getCookie('donationPending') === '1' && getCookie('donationDone') !== '1') {
+    eraseCookie('donationPending');
+  }
+});
+</script>
   <footer class="footer">
     <p>© 2025 WordPress | Built for smart traders</p>
   </footer>
