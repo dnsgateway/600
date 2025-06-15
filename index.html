@@ -8,35 +8,43 @@
 </head>
 <body>
   <header class="hero">
-    <h1>Forex Trading Simulator </h1>
+    <h1>Forex Trading Simulator</h1>
     <p>Your AI-powered Forex trading assistant. Track, analyze, and strategize smarter.</p>
     <div class="cta-buttons">
       <a href="https://dnsgateway.github.io/601/" class="btn secondary">Launch Demo</a>
-      <a href="#" class="btn">Access Trial Version </a>
+      <!-- ✨ give this an id so we can hook JS onto it -->
+      <a href="#" id="accessTrialBtn" class="btn">Access Trial Version</a>
     </div>
   </header>
-<!-- ─────── Donation Banner ─────── -->
+
+  <!-- ─────── Donation Modal ─────── -->
   <div id="donationCard" class="donation-card">
     <div class="donation-content">
       <button id="closeDonation" class="close-btn" aria-label="Close">&times;</button>
+
       <h3>Support Forex Simulator</h3>
       <p>Enjoying the app? A small $2.99 donation keeps the updates coming. 🙏</p>
+
       <form id="donateForm" class="donation-form"
             action="https://www.paypal.com/donate"
             method="post"
             target="_blank">
-        <input type="text" name="first_name" placeholder="First name" required />
-        <input type="text" name="last_name" placeholder="Last name" required />
-        <input type="email" name="email" placeholder="Email" required />
+        <input type="text"  name="first_name" placeholder="First name" required />
+        <input type="text"  name="last_name"  placeholder="Last name"  required />
+        <input type="email" name="email"      placeholder="Email"      required />
+
+        <!-- PayPal metadata -->
         <input type="hidden" name="business" value="YOUR_PAYPAL_ID" />
         <input type="hidden" name="currency_code" value="USD" />
         <input type="hidden" name="amount" value="2.99" />
         <input type="hidden" name="return" value="https://yourdomain.com/?donation=success" />
+
         <button type="submit" class="paypal-btn">Donate $2.99 with PayPal</button>
-        <!-- ─────── Thank-you Message ─────── -->
-   <div id="donationThanks" class="donation-thanks-inline">
-    ✅ Thanks for your support! You’ll get an e-mail with your access link after processing.
-  </div>
+
+        <!-- inline thank-you banner -->
+        <div id="donationThanks" class="donation-thanks-inline">
+          ✅ Thanks for your support! You’ll get an e-mail with your access link after processing.
+        </div>
       </form>
     </div>
   </div>
@@ -88,48 +96,54 @@
     <p>Toggle features such as live rates, macro trends, and AI modules directly from your dashboard menu.</p>
   </section>
 <script>
-/* ───── helper functions (keep if you already have them) ───── */
-function setCookie(name,val,days){
-  const d = new Date(); d.setTime(d.getTime()+days*864e5);
-  document.cookie = `${name}=${val}; path=/; SameSite=Lax; expires=${d.toUTCString()}`;
-}
-function getCookie(name){
-  return document.cookie.split('; ').find(c=>c.startsWith(name+'='))?.split('=')[1];
-}
-function eraseCookie(name){ document.cookie = `${name}=; Max-Age=-1; path=/;`; }
-
-/* ───── 1. When user clicks “Donate” ───── */
-const donateForm = document.querySelector('#donateForm');
-const ORIGINAL_TITLE = document.title;
-
-donateForm?.addEventListener('submit', () => {
-  // 1️⃣  flag that a donation is in progress
-  setCookie('donationPending','1',1);
-
-  // 2️⃣  warn the user not to close the tab
-  document.title = 'Please do not close this window';
-});
-
-/* ───── 2. If PayPal redirects back successfully ───── */
-window.addEventListener('DOMContentLoaded', () => {
-  const ok = new URLSearchParams(location.search).get('donation') === 'success';
-  if (ok && getCookie('donationPending') === '1') {
-    eraseCookie('donationPending');
-    setCookie('donationDone','1',7);
-
-    // Restore the title & show the inline thank-you banner
-    document.title = ORIGINAL_TITLE;
-    document.querySelector('#donationThanks')?.classList.add('show');
+/* ───── helper functions (unchanged) ───── */
+  function setCookie(name,val,days){
+    const d = new Date(); d.setTime(d.getTime()+days*864e5);
+    document.cookie = `${name}=${val}; path=/; SameSite=Lax; expires=${d.toUTCString()}`;
   }
-});
-
-/* ───── 3. If user closes / reloads before completing PayPal ───── */
-window.addEventListener('beforeunload', () => {
-  // If they abandon while the donation is still “pending”, reset it
-  if (getCookie('donationPending') === '1' && getCookie('donationDone') !== '1') {
-    eraseCookie('donationPending');
+  function getCookie(name){
+    return document.cookie.split('; ').find(c=>c.startsWith(name+'='))?.split('=')[1];
   }
-});
+  function eraseCookie(name){ document.cookie = `${name}=; Max-Age=-1; path=/;`; }
+
+  /* ───── A. show / hide the donation card ───── */
+  const donationCard   = document.getElementById('donationCard');
+  const trialBtn       = document.getElementById('accessTrialBtn');
+  const closeDonation  = document.getElementById('closeDonation');
+
+  trialBtn.addEventListener('click', (e)=>{
+    e.preventDefault();                 // stay on page
+    donationCard.classList.add('show'); // reveal modal
+  });
+  closeDonation.addEventListener('click', ()=>{
+    donationCard.classList.remove('show');
+  });
+
+  /* ───── B. PayPal flow (original logic) ───── */
+  const donateForm = document.getElementById('donateForm');
+  const ORIGINAL_TITLE = document.title;
+
+  donateForm?.addEventListener('submit', () => {
+    setCookie('donationPending','1',1);
+    document.title = 'Please do not close this window';
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const ok = new URLSearchParams(location.search).get('donation') === 'success';
+    if (ok && getCookie('donationPending') === '1') {
+      eraseCookie('donationPending');
+      setCookie('donationDone','1',7);
+
+      document.title = ORIGINAL_TITLE;
+      document.getElementById('donationThanks')?.classList.add('show');
+    }
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if (getCookie('donationPending') === '1' && getCookie('donationDone') !== '1') {
+      eraseCookie('donationPending');
+    }
+  });
 </script>
   <footer class="footer">
     <p>© 2025 WordPress | Built for smart traders</p>
