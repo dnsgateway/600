@@ -70,126 +70,46 @@ header.hero p {
   border-radius: 1rem;
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
 }
-/* --- donation pop-up banner at the top --- */
-.donation-card {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-  z-index: 3000;
-  opacity: 0;
-  transform: translateY(-100%);
-  transition: all 0.35s ease;
-  pointer-events: none;
-}
+/* ── Donation modal ─────────────────────────────── */
+    .donation-card{
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%; max-width: 420px;
+      background: #fff;
+      border-radius: .75rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,.25);
+      padding: 2rem 1.5rem;
+      z-index: 1000;
 
-.donation-card.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
+      /* start hidden */
+      display: none;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .donation-card.show{               /* revealed state */
+      display: block;
+      opacity: 1;
+    }
+    .donation-card .close-btn{
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      position: absolute;
+      top: .75rem;
+      right: 1rem;
+      cursor: pointer;
+    }
 
-.donation-content {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  color: var(--txt);
-  font-size: 0.9rem;
-}
-
-.donation-content h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--green);
-  flex: 1 1 100%;
-}
-
-/* --- donation form row --- */
-.donation-form{
-  display:flex;
-  gap:.6rem;
-  flex-wrap:wrap;                    /* will wrap gracefully on narrow screens */
-  align-items:center;
-  width:100%;
-}
-
-/* inputs */
-.donation-form input[type="text"],
-.donation-form input[type="email"]{
-  flex:1 1 140px;                    /* equal width, shrinks down to 140 px */
-  min-width:120px;
-  padding:.55rem .8rem;
-  border:1px solid var(--border);
-  border-radius:6px;
-  background:var(--bg);
-  color:var(--txt);
-  font-size:.85rem;
-}
-.donation-form input::placeholder{
-  color:var(--sub);
-  opacity:.8;
-}
-
-/* keep the PayPal button last & visually balanced */
-.paypal-btn{
-  flex:0 0 auto;                     /* never grows */
-  white-space:nowrap;                /* text won’t wrap */
-  background:#ffc439;
-  color:#111;
-  border:none;
-  border-radius:6px;
-  padding:.65rem 1.1rem;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.donation-content p {
-  flex: 1;
-  margin: 0;
-  color: var(--sub);
-}
-
-.paypal-btn {
-  background: #ffc439;
-  color: #111;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.close-btn {
-  background: none;
-  border: none;
-  color: var(--txt);
-  font-size: 1.2rem;
-  padding: 0.3rem 0.8rem;
-  cursor: pointer;
-  align-self: start;
-}
-.donation-thanks-inline {
-  display: none;
-  margin-top: 0.8rem;
-  width: 100%;
-  background: var(--green);
-  color: #00223e;
-  padding: 0.75rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 6px;
-}
-.donation-thanks-inline.show {
-  display: block;
-}
+    /* inline thank-you banner (already handled in JS) */
+    .donation-thanks-inline{
+      margin-top: 1rem;
+      font-size: .9rem;
+      color: #28a745;
+      display: none;
+    }
+    .donation-thanks-inline.show{ display:block; }
 
 footer.footer {
   margin-top: 2rem;
