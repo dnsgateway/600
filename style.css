@@ -73,6 +73,7 @@ body {
     border-radius: 8px;
     border-left: 4px solid #58a6ff;
 }
+
 /* --- donation pop-up banner at the top --- */
 .donation-card {
   position: fixed;
@@ -192,12 +193,4 @@ body {
 }
 .donation-thanks-inline.show {
   display: block;
-}
-
-
-.footer {
-    text-align: center;
-    padding: 1rem;
-    border-top: 1px solid #30363d;
-    background-color: #161b22;
 }
