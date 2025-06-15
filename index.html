@@ -4,133 +4,151 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Set Forex Market Alerts</title>
+
+  <!-- Core styles -->
   <link rel="stylesheet" href="landing.css" />
+
+  <!-- Minimal styles needed for the new behaviour -->
+  <style>
+    /* ── Donation modal ─────────────────────────────── */
+    .donation-card{
+      position: fixed;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90%; max-width: 420px;
+      background: #fff;
+      border-radius: .75rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,.25);
+      padding: 2rem 1.5rem;
+      z-index: 1000;
+
+      /* start hidden */
+      display: none;
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+    .donation-card.show{               /* revealed state */
+      display: block;
+      opacity: 1;
+    }
+    .donation-card .close-btn{
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      position: absolute;
+      top: .75rem;
+      right: 1rem;
+      cursor: pointer;
+    }
+
+    /* inline thank-you banner (already handled in JS) */
+    .donation-thanks-inline{
+      margin-top: 1rem;
+      font-size: .9rem;
+      color: #28a745;
+      display: none;
+    }
+    .donation-thanks-inline.show{ display:block; }
+  </style>
 </head>
+
 <body>
   <header class="hero">
-    <h1>Forex Trading Simulator </h1>
+    <h1>Forex Trading Simulator</h1>
     <p>Your AI-powered Forex trading assistant. Track, analyze, and strategize smarter.</p>
     <div class="cta-buttons">
       <a href="https://dnsgateway.github.io/601/" class="btn secondary">Launch Demo</a>
-      <a href="#" class="btn">Access Trial Version </a>
+      <!-- ✨ give this an id so we can hook JS onto it -->
+      <a href="#" id="accessTrialBtn" class="btn">Access Trial Version</a>
     </div>
   </header>
-<!-- ─────── Donation Banner ─────── -->
+
+  <!-- ─────── Donation Modal ─────── -->
   <div id="donationCard" class="donation-card">
     <div class="donation-content">
       <button id="closeDonation" class="close-btn" aria-label="Close">&times;</button>
+
       <h3>Support Forex Simulator</h3>
       <p>Enjoying the app? A small $2.99 donation keeps the updates coming. 🙏</p>
+
       <form id="donateForm" class="donation-form"
             action="https://www.paypal.com/donate"
             method="post"
             target="_blank">
-        <input type="text" name="first_name" placeholder="First name" required />
-        <input type="text" name="last_name" placeholder="Last name" required />
-        <input type="email" name="email" placeholder="Email" required />
+        <input type="text"  name="first_name" placeholder="First name" required />
+        <input type="text"  name="last_name"  placeholder="Last name"  required />
+        <input type="email" name="email"      placeholder="Email"      required />
+
+        <!-- PayPal metadata -->
         <input type="hidden" name="business" value="YOUR_PAYPAL_ID" />
         <input type="hidden" name="currency_code" value="USD" />
         <input type="hidden" name="amount" value="2.99" />
         <input type="hidden" name="return" value="https://yourdomain.com/?donation=success" />
+
         <button type="submit" class="paypal-btn">Donate $2.99 with PayPal</button>
-        <!-- ─────── Thank-you Message ─────── -->
-   <div id="donationThanks" class="donation-thanks-inline">
-    ✅ Thanks for your support! You’ll get an e-mail with your access link after processing.
-  </div>
+
+        <!-- inline thank-you banner -->
+        <div id="donationThanks" class="donation-thanks-inline">
+          ✅ Thanks for your support! You’ll get an e-mail with your access link after processing.
+        </div>
       </form>
     </div>
   </div>
 
-<section class="section features">
-  <h2>Dashboard Features</h2>
-  <ul>
-    <li>
-      <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-        <path d="M3 17L9 11L13 15L21 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Real-Time Forex Rates with Trend Indicators
-    </li>
-    <li>
-       <svg class="icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
-        <line x1="16" y1="2" x2="16" y2="6" stroke="currentColor" stroke-width="2"/>
-        <line x1="8" y1="2" x2="8" y2="6" stroke="currentColor" stroke-width="2"/>
-        <line x1="3" y1="10" x2="21" y2="10" stroke="currentColor" stroke-width="2"/>
-      </svg>
-      Macroeconomic & Geopolitical Event Calendar
-    </li>
-    <li>
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor"
-      d="M11 17H7q-2.075 0-3.537-1.463T2 12t1.463-3.537T7 7h4v2H7q-1.25 0-2.125.875T4 12t.875 2.125T7 15h4zm-3-4v-2h8v2zm5 4v-2h4q1.25 0 2.125-.875T20 12t-.875-2.125T17 9h-4V7h4q2.075 0 3.538 1.463T22 12t-1.463 3.538T17 17z"/></svg>
-      Weekly AI-Generated Trade Strategy
-    </li>
-    <li>
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" 
-        stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-        stroke-width="2" d="M14 15h7M3 15h2m0 0a2.5 2.5 0 1 0 5 0a2.5 2.5 0 0 0-5 0m15-6h1M3 9h7m6.5 2.5a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5"/></svg>
-      Interactive User Interface
-    </li>
-  </ul>
-</section>
+  <!-- … rest of your page unchanged … -->
 
-  <section class="section preview">
-    <h2>Live Interface Preview</h2>
-    <img src="457189FD-7DB0-4642-B40C-FD2C9FD8D186.png" alt="App UI Preview" class="mockup" />
-  </section>
-
-  <section class="section strategy">
-    <h2>AI Strategy Highlight</h2>
-    <p><strong>This Week:</strong> Long GBP/USD, Hedge EUR/USD Volatility using protective puts and inverse ETF hedges.</p>
-  </section>
-
-  <section class="section customize">
-    <h2>Customizable Interface</h2>
-    <p>Toggle features such as live rates, macro trends, and AI modules directly from your dashboard menu.</p>
-  </section>
-<script>
-/* ───── helper functions (keep if you already have them) ───── */
-function setCookie(name,val,days){
-  const d = new Date(); d.setTime(d.getTime()+days*864e5);
-  document.cookie = `${name}=${val}; path=/; SameSite=Lax; expires=${d.toUTCString()}`;
-}
-function getCookie(name){
-  return document.cookie.split('; ').find(c=>c.startsWith(name+'='))?.split('=')[1];
-}
-function eraseCookie(name){ document.cookie = `${name}=; Max-Age=-1; path=/;`; }
-
-/* ───── 1. When user clicks “Donate” ───── */
-const donateForm = document.querySelector('#donateForm');
-const ORIGINAL_TITLE = document.title;
-
-donateForm?.addEventListener('submit', () => {
-  // 1️⃣  flag that a donation is in progress
-  setCookie('donationPending','1',1);
-
-  // 2️⃣  warn the user not to close the tab
-  document.title = 'Please do not close this window';
-});
-
-/* ───── 2. If PayPal redirects back successfully ───── */
-window.addEventListener('DOMContentLoaded', () => {
-  const ok = new URLSearchParams(location.search).get('donation') === 'success';
-  if (ok && getCookie('donationPending') === '1') {
-    eraseCookie('donationPending');
-    setCookie('donationDone','1',7);
-
-    // Restore the title & show the inline thank-you banner
-    document.title = ORIGINAL_TITLE;
-    document.querySelector('#donationThanks')?.classList.add('show');
+  <script>
+  /* ───── helper functions (unchanged) ───── */
+  function setCookie(name,val,days){
+    const d = new Date(); d.setTime(d.getTime()+days*864e5);
+    document.cookie = `${name}=${val}; path=/; SameSite=Lax; expires=${d.toUTCString()}`;
   }
-});
-
-/* ───── 3. If user closes / reloads before completing PayPal ───── */
-window.addEventListener('beforeunload', () => {
-  // If they abandon while the donation is still “pending”, reset it
-  if (getCookie('donationPending') === '1' && getCookie('donationDone') !== '1') {
-    eraseCookie('donationPending');
+  function getCookie(name){
+    return document.cookie.split('; ').find(c=>c.startsWith(name+'='))?.split('=')[1];
   }
-});
-</script>
+  function eraseCookie(name){ document.cookie = `${name}=; Max-Age=-1; path=/;`; }
+
+  /* ───── A. show / hide the donation card ───── */
+  const donationCard   = document.getElementById('donationCard');
+  const trialBtn       = document.getElementById('accessTrialBtn');
+  const closeDonation  = document.getElementById('closeDonation');
+
+  trialBtn.addEventListener('click', (e)=>{
+    e.preventDefault();                 // stay on page
+    donationCard.classList.add('show'); // reveal modal
+  });
+  closeDonation.addEventListener('click', ()=>{
+    donationCard.classList.remove('show');
+  });
+
+  /* ───── B. PayPal flow (original logic) ───── */
+  const donateForm = document.getElementById('donateForm');
+  const ORIGINAL_TITLE = document.title;
+
+  donateForm?.addEventListener('submit', () => {
+    setCookie('donationPending','1',1);
+    document.title = 'Please do not close this window';
+  });
+
+  window.addEventListener('DOMContentLoaded', () => {
+    const ok = new URLSearchParams(location.search).get('donation') === 'success';
+    if (ok && getCookie('donationPending') === '1') {
+      eraseCookie('donationPending');
+      setCookie('donationDone','1',7);
+
+      document.title = ORIGINAL_TITLE;
+      document.getElementById('donationThanks')?.classList.add('show');
+    }
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if (getCookie('donationPending') === '1' && getCookie('donationDone') !== '1') {
+      eraseCookie('donationPending');
+    }
+  });
+  </script>
+
   <footer class="footer">
     <p>© 2025 WordPress | Built for smart traders</p>
   </footer>
