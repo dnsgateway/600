@@ -74,122 +74,88 @@ body {
     border-left: 4px solid #58a6ff;
 }
 
-/* --- donation pop-up banner at the top --- */
+/* ── Donation Modal Updated for Dark Theme ─────────────── */
 .donation-card {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: var(--panel);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
-  z-index: 3000;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 560px;
+  background: #111827; /* Dark navy */
+  color: #E5E7EB; /* Light gray text */
+  border-radius: 0.75rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  padding: 2rem 1.5rem;
+  display: none;
   opacity: 0;
-  transform: translateY(-100%);
-  transition: all 0.35s ease;
-  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
 }
-
 .donation-card.show {
+  display: block;
   opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
 }
-
-.donation-content {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 1rem 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  color: var(--txt);
-  font-size: 0.9rem;
-}
-
-.donation-content h3 {
-  margin: 0;
-  font-size: 1rem;
-  color: var(--green);
-  flex: 1 1 100%;
-}
-
-/* --- donation form row --- */
-.donation-form{
-  display:flex;
-  gap:.6rem;
-  flex-wrap:wrap;                    /* will wrap gracefully on narrow screens */
-  align-items:center;
-  width:100%;
-}
-
-/* inputs */
-.donation-form input[type="text"],
-.donation-form input[type="email"]{
-  flex:1 1 140px;                    /* equal width, shrinks down to 140 px */
-  min-width:120px;
-  padding:.55rem .8rem;
-  border:1px solid var(--border);
-  border-radius:6px;
-  background:var(--bg);
-  color:var(--txt);
-  font-size:.85rem;
-}
-.donation-form input::placeholder{
-  color:var(--sub);
-  opacity:.8;
-}
-
-/* keep the PayPal button last & visually balanced */
-.paypal-btn{
-  flex:0 0 auto;                     /* never grows */
-  white-space:nowrap;                /* text won’t wrap */
-  background:#ffc439;
-  color:#111;
-  border:none;
-  border-radius:6px;
-  padding:.65rem 1.1rem;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.donation-content p {
-  flex: 1;
-  margin: 0;
-  color: var(--sub);
-}
-
-.paypal-btn {
-  background: #ffc439;
-  color: #111;
-  border: none;
-  border-radius: 6px;
-  padding: 0.6rem 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.close-btn {
+.donation-card .close-btn {
   background: none;
   border: none;
-  color: var(--txt);
-  font-size: 1.2rem;
-  padding: 0.3rem 0.8rem;
+  font-size: 1.5rem;
+  color: #94a3b8;
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
   cursor: pointer;
-  align-self: start;
 }
+.donation-card h3 {
+  color: #38bdf8; /* Light blue */
+  margin-bottom: 0.25rem;
+}
+.donation-card p {
+  color: #cbd5e1; /* Soft gray-blue */
+  margin-bottom: 1rem;
+}
+
+/* ── Donation Form Inputs ── */
+.donation-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+.donation-form input[type="text"],
+.donation-form input[type="email"] {
+  flex: 1 1 30%;
+  padding: 0.5rem;
+  background: transparent;
+  border: 1px solid #334155;
+  color: #e2e8f0;
+  border-radius: 6px;
+}
+.donation-form input::placeholder {
+  color: #64748b;
+}
+
+/* ── PayPal Button ── */
+.paypal-btn {
+  background-color: #facc15;
+  color: #1f2937;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.paypal-btn:hover {
+  background-color: #fbbf24;
+}
+
+/* ── Thank You Message ── */
 .donation-thanks-inline {
   display: none;
-  margin-top: 0.8rem;
-  width: 100%;
-  background: var(--green);
-  color: #00223e;
-  padding: 0.75rem;
-  font-weight: 600;
-  text-align: center;
-  border-radius: 6px;
+  color: #4ade80;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
 }
 .donation-thanks-inline.show {
   display: block;
