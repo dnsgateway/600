@@ -11,6 +11,37 @@ body {
   line-height: 1.6;
   padding: 1rem;
 }
+.ms-banner {
+  background-color: #1e293b; /* Dark slate blue */
+  color: #f1f5f9;             /* Light text */
+  padding: 1rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+  border-bottom: 1px solid #334155;
+}
+
+.ms-banner-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.ms-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ms-icons img {
+  width: 48px;
+  height: 48px;
+  transition: transform 0.2s ease;
+}
+
+.ms-icons img:hover {
+  transform: scale(1.1);
+}
 header.hero {
   text-align: center;
   padding-top: 2rem;
