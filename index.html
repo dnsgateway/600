@@ -106,6 +106,24 @@
     <p>Toggle features such as live rates, macro trends, and AI modules directly from your dashboard menu.</p>
   </section>
 <script>
+  let lastScrollY = window.scrollY;
+  const banner = document.querySelector('.ms-banner');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        banner.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up
+        banner.style.transform = 'translateY(0)';
+      }
+    } else {
+      // Near top of page
+      banner.style.transform = 'translateY(0)';
+    }
+    lastScrollY = window.scrollY;
+  })
 /* ───── helper functions (unchanged) ───── */
   function setCookie(name,val,days){
     const d = new Date(); d.setTime(d.getTime()+days*864e5);
