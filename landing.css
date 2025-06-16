@@ -198,6 +198,22 @@ header.hero p {
 .donation-thanks-inline.show {
   display: block;
 }
+/* Access Button */
+.ms-access-btn {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: white;
+  background-color: #2563eb; /* Blue-600 */
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+.ms-access-btn:hover {
+  background-color: #1d4ed8; /* Blue-700 */
+}
+
 footer.footer {
   margin-top: 2rem;
   text-align: center;
