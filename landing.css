@@ -17,21 +17,21 @@ body {
   left: 0;
   width: 100%;
   background: linear-gradient(to right, #ffffff, #f3e8ff); /* White to light purple */
-  color: #4b0082; /* Indigo text */
-  padding: 0.5rem 1rem;
+  color: #4b0082;
+  padding: 0.4rem 1rem 0.6rem;
   font-family: 'Segoe UI', sans-serif;
   text-align: center;
   z-index: 1000;
   border-bottom: 1px solid #e5e7eb;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
   transition: transform 0.3s ease-in-out;
   will-change: transform;
 }
 
 .ms-banner-text {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.2rem;
 }
 
 .ms-icons {
@@ -42,8 +42,8 @@ body {
 }
 
 .ms-icons img {
-  width: 28px;
-  height: 28px;
+  width: 24px;
+  height: 24px;
   transition: transform 0.2s ease;
 }
 
@@ -53,7 +53,7 @@ body {
 
 /* Ensure the rest of your page isn’t hidden behind the fixed banner */
 body {
-  padding-top: 4rem; /* Adjust based on final banner height */
+  padding-top: 4.5rem; /* Adjust based on final reduced heigh
 }
 header.hero {
   text-align: center;
@@ -203,8 +203,8 @@ header.hero p {
 /* Access Button */
 .ms-access-btn {
   display: inline-block;
-  padding: 0.4rem 1rem;
-  font-size: 0.85rem;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: white;
   background-color: #2563eb; /* Blue-600 */
