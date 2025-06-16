@@ -53,7 +53,7 @@ body {
 
 /* Ensure the rest of your page isn’t hidden behind the fixed banner */
 body {
-  padding-top: 4.5rem; /* Adjust based on final reduced heigh
+  padding-top: 4.5rem; /* Adjust based on final reduced heigh */
 }
 header.hero {
   text-align: center;
